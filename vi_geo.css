@@ -1,0 +1,65 @@
+body{
+    background-image:url("img/cornocopias\ vector\ 02.jpg");
+    font-family:DejaVu Sans Mono, monospace;
+    text-align:center;
+}
+.headerprinc{
+    
+    
+    background-color: rgba(0, 128, 128, 0.562);
+    width: fit-content;
+    text-align:center;
+    margin-left:340px;
+    border-radius: 10px;
+    padding: 20px;
+
+}
+
+.headerprinc h1{
+    font-style: oblique;
+    font-size: 30px;
+}
+
+.headerprinc nav{
+    background-color: rgb(255, 255, 255);
+    text-align:center;
+    padding: 20px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-left:60px;
+    border-bottom:5px black solid;
+    border-left:5px black solid;
+    
+}
+.headerprinc nav,a {
+    text-decoration:none;
+    color:rgb(15, 74, 109);
+    font-weight: bold;
+}
+.paragrafos p{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#vi_geo {
+    margin-left:120px;
+    width: 85%;
+    height:640px;
+    border:7px rgba(255, 255, 255, 0.712);
+    border-radius:10px;
+    border-left:7px black solid;
+    border-bottom: 7px black solid;
+}
+
+.nav_bottom{
+    padding: 20px;
+    padding-top:20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.623);
+    width: fit-content;
+    margin-left:35%;
+    border-bottom:5px black solid;
+    border-left:5px black solid;
+
+    
+}

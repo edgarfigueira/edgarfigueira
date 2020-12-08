@@ -1,0 +1,33 @@
+body{
+    background-color: lightskyblue;
+    font-family: Verdana,Tahoma, sans-serif;
+}
+
+.headerprinc{
+    text-align: center;
+    background-color: white;
+    border: 3px solid black;
+    color: black;
+
+}
+
+.headerprinc nav,a {
+    padding:12px;
+    text-decoration:none;
+    text-align: center;
+    color:rgb(15, 74, 109);
+    font-weight: bold;
+    
+}
+
+.headerprinc h1{
+    padding:15px;
+
+}
+
+
+
+nav {
+    text-align:center;
+}
+
