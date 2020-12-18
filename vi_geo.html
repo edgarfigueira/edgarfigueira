@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        
+        <meta charset="utf-8"> 
+        <link rel="stylesheet" type="text/css" href="vi_geo.css"/>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" 
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""/>
+
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""
+        ></script>
+
+  <!-- Load Esri Leaflet from CDN -->
+        <script src="https://unpkg.com/esri-leaflet@2.5.1/dist/esri-leaflet.js"
+        integrity="sha512-q7X96AASUF0hol5Ih7AeZpRF6smJS55lcvy+GLWzJfZN+31/BQ8cgNx2FGF+IQSA4z2jHwB20vml+drmooqzzQ=="
+        crossorigin=""></script>
+    
+
+        <!-- Include Leaflet.heat from CDN -->
+        <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+    <!-- Load Heatmap Feature Layer from CDN -->
+        <script src="https://unpkg.com/esri-leaflet-heatmap@2.0.0"></script>
+
+    <!-- Heatmap Feature Layer -->
+        <script src="https://unpkg.com/esri-leaflet-heatmap@2.0.0/dist/esri-leaflet-heatmap.js"
+        integrity="sha512-fSJJRfO4PK90PN9jKKBzBZmzlNRsR12QA/CqTTWgfUTfLMF1Nrx5ouOqlpzC8LQIP+Qz0/G4BlHSgxHrCLHuMA=="
+        crossorigin=""></script>
+
+
+        <script src="geojson_docs/freg_porto_polig.geojson"></script>
+        <script src="geojson_docs/levantamento_comp.geojson"></script>
+        
+        
+    
+        
+
+        
+        
+        <title>Arte Urbana na cidade do Porto - 1.2</title>
+          
+        
+    </head>
+    
+
+    <body>
+
+        
+        <section>
+            <div class="headerprinc">
+
+
+                
+        <h1>Arte Urbana na Cidade do Porto </h1>
+        <h3>Visualizador Geográfico de peças e instalações artísticas da Cidade do Porto</h3>
+
+        <nav>
+            <a href="index.html" target="blank">Plataforma de Conteúdos |</a>
+            <a href="dossier_pro.html" target="blank">Dossier Profissional |</a>
+            <a href="graf_arte.html" target="blank">Graffiti Vs Arte Urbana </a>
+        </nav>
+            </div>
+            
+            
+        </section>
+        <br>
+        <br>
+
+        <article class="paragrafos">
+            
+            <p>
+                No seguimento da unidade curricular de WebSIG e Ordenamento do Território<br> desenvolveu-se um Mapa <em>Leaflet</em>
+                aplicado à Arte Urbana<br> movimento cultural que tem registado forte presença na Cidade do Porto.
+            </p>
+                <br>
+                
+                <p>Estes movimentos artísticos têm-se revelado através do aparecimento de determinados<br> murais nas paredes de betão da cidade do Porto e não só.</p><br>
+                <br>
+                <p>Para dar forma a este movimento realizou-se um levantamento de peças de arte urbana<br> recorrendo à <em>API 123 Survey</em> da <em>Esri</em> como sistema de recolha de dados. <br>
+                Uma vez realizado o levantamento, projetam-se então os resultados neste <br>Visualizador Geográfico de Arte Urbana.</p>
+                <br>
+                <br>
+             
+                <p>Artistas ou não... nomes anónimos que dão cor à cidade do Porto!
+        </p>
+        <br>
+        <br>
+        <br>
+        <br>
+        </article>
+        <!-- Include Leaflet.heat from CDN -->
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+    <!-- Load Heatmap Feature Layer from CDN -->
+    <script src="https://unpkg.com/esri-leaflet-heatmap@2.0.0"></script>
+
+        <div id="vi_geo"></div>
+        
+
+
+
+
+        
+        <br>
+        <br>
+        <br>
+
+        <nav class="nav_bottom">
+            <a href="index.html" target="blank">Plataforma de Conteúdos</a> |
+            <a href="dossier_pro.html" target="blank">Dossier Profissional </a>
+
+        </nav>
+
+
+        
+        <script>
+        //criacao mapa leaflet
+            const mymap = L.map('vi_geo').setView([41.14961, -8.61099], 13);
+            
+    
+           
+
+
+
+
+        // Setup the mouse coordinate display
+        var coordDIV = document.createElement('div');
+            coordDIV.id = 'mapCoordDIV';
+            coordDIV.style.position = 'absolute';
+            coordDIV.style.bottom = '1px';
+            coordDIV.style.left = '150px';
+            coordDIV.style.zIndex = '900';
+            coordDIV.style.color = '#404040';
+            coordDIV.style.fontFamily = 'Calibri';
+            coordDIV.style.fontSize = '10pt';
+            coordDIV.style.fontWeight = 'bold';
+            coordDIV.style.backgroundColor = '#fff';
+            coordDIV.style.opacity = '0.6';
+
+
+            document.getElementById('vi_geo').appendChild(coordDIV);
+
+        // Setup the event to capture and display mouse movements
+            mymap.on('mousemove', function(e){
+                var lat = e.latlng.lat.toFixed(3);
+                var lon = e.latlng.lng.toFixed(3);
+                document.getElementById('mapCoordDIV').innerHTML = 'Coordenadas: ' + lat + ' , ' + lon;
+                });
+
+            L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png')
+            .addTo(mymap);
+
+        
+        //Base maps
+        var Imaginary= L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{ attribution:'<a href="https://www.esri.com/en-us/home"</a>©️ESRI_Imaginary' });
+
+        var OpenStreet = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution:'<a href="https://www.openstreetmap.org/#map=17/-21.00148/-44.99806"</a>©️OpenStreetMap'});
+
+        var CycleOSM= L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
+
+        //camada freguesia
+            
+            
+        function stylefreg(fregcamada){
+                return{
+                    fillColor:"#484A1E",
+                    fillOpacity:0.10,
+                    color:"#3D3C3C",
+                    weight: 1,
+                };
+            }
+            
+        var fregcamada=L.geoJSON(freg_layer,{style: stylefreg})
+        fregcamada.addTo(mymap);
+
+//pontos arte urbana-------------------------------------------------------------------------------------------------------------------
+            
+
+        var grafcamada= L.geoJSON(levantamento_completo,
+        {pointToLayer:returngrafpts}).addTo(mymap);
+
+        function returngrafpts(geoJSON, latlng){
+            var att=geoJSON.properties;
+            return L.circleMarker(latlng,{radius:1, color:"blue"}).bindPopup( "<h3>Coordenadas</h3><h5>Latitude: "+att.Lat+"<br>Longitude: "+att.Lon+"</h5> <h4>Artista: "+att.nome_do_ar+"</h4> <h5>Apreciação: "+att.aprecia_o_+"</h5> <h5>Freguesia: "+att.freguesia+"</h5> <h5>Fotografia:<img src="+att.RelPath+" width=250px height=250px></h5>");
+            };
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------
+        //heatmap
+        var heatmap = L.esri.Heat.featureLayer({
+            url: 'https://services5.arcgis.com/AMh9EzyFGgthLT1q/arcgis/rest/services/levantamento_wgs84/FeatureServer/0',
+            radius: 17
+        });
+        heatmap.addTo(mymap);
+        //var heat = L.heatLayer(grafcamada).addTo(mymap);
+        
+        
+//------------------------------------------------------------------------------------------------------------------------------
+
+       //legenda
+       //basemaps     
+        var basemaps = {
+            'Imagem Satélite': Imaginary,
+            'Open Street Map':OpenStreet,
+            'Mapa vias cicláveis':CycleOSM,
+        };
+
+        //LAYERS
+        var layers = {
+            'Arte Urbana': grafcamada,
+            'HeatMap': heatmap,
+        };
+
+                L.control.layers(basemaps, layers).addTo(mymap);
+
+                //SCALE
+                L.control.scale().addTo(mymap);
+
+        
+
+
+
+
+        </script>
+
+           
+            
+        
+
+
+
+        </body>
+</html>
