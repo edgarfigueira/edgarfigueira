@@ -49,6 +49,7 @@ body{
     border-radius:10px;
     border-left:7px black solid;
     border-bottom: 7px black solid;
+    text-align: left;
 }
 
 .nav_bottom{
