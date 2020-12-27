@@ -9,7 +9,8 @@ body{
     background-color: rgba(0, 128, 128, 0.562);
     width: fit-content;
     text-align:center;
-    margin-left:340px;
+    margin-left: auto; 
+    margin-right: auto;
     border-radius: 10px;
     padding: 20px;
 
@@ -52,13 +53,12 @@ body{
     text-align: left;
 }
 
-.nav_bottom{
+#nav_bottom a{
     padding: 20px;
     padding-top:20px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.623);
     width: fit-content;
-    margin-left:35%;
     border-bottom:5px black solid;
     border-left:5px black solid;
 
